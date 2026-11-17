@@ -1,0 +1,90 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: "Inter";
+  src: url("./assets/fonts/inter-latin.woff2") format("woff2");
+  font-weight: 300 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "The Seasons";
+  src: url("./assets/fonts/the-seasons-300.woff2") format("woff2");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "The Seasons";
+  src: url("./assets/fonts/the-seasons-400.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@theme {
+  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+  --font-serif: "The Seasons", "Newsreader", "Times New Roman", serif;
+
+  --color-ink: #1b1b1b;
+  --color-charcoal: #2a2926;
+  --color-cream: #f4f1ea;
+  --color-sand: #e5dfd0;
+  --color-sand-dark: #d6cfbe;
+  --color-sand-hover: #ebe6db;
+  --color-stone: #5c5a55;
+  --color-gold: #d9a55b;
+  --color-error: #a3141a;
+
+  --tracking-label: 0.24em;
+  --tracking-button: 0.18em;
+
+  --animate-marquee: marquee 60s linear infinite;
+  --animate-pulse-ring: pulse-ring 2.4s ease-out infinite;
+
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  @keyframes pulse-ring {
+    0% { transform: scale(1); opacity: 0.9; }
+    100% { transform: scale(2.6); opacity: 0; }
+  }
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-cream font-sans text-ink antialiased;
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-ink);
+    outline-offset: 3px;
+  }
+}
+
+@layer components {
+  /* Underlined form field used in the enquiry form */
+  .field {
+    @apply w-full appearance-none rounded-none border-0 border-b border-ink/20 bg-transparent py-2.5 pr-7 pl-0 text-base sm:py-3.5 sm:pr-8 sm:text-[17px] leading-[1.4] text-ink outline-none placeholder:text-ink/50 focus:border-ink;
+  }
+  select.field:invalid {
+    @apply text-ink/50;
+  }
+  select.field option,
+  select.field optgroup {
+    @apply text-ink;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .animate-marquee,
+  .animate-pulse-ring {
+    animation: none;
+  }
+}
