@@ -38,16 +38,29 @@ export const clients = [
 const mapUrl = (address) =>
   'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent('Magppie ' + address)
 
+/**
+ * Experience centres. `map` overrides the generated Google Maps search link
+ * with an exact pin where one has been supplied.
+ */
 export const stores = [
-  { city: 'New Delhi', area: 'Sultanpur', address: '352, Sultanpur, MG Road, New Delhi 110030' },
-  { city: 'New Delhi', area: 'Kirti Nagar', address: '12/1, W.H.S., Block-2, Kirti Nagar, New Delhi 110015' },
-  { city: 'Mumbai', area: 'Lower Parel', address: 'One Lodha Place, 1615B, Senapati Bapat Marg, Lower Parel, Mumbai 400013' },
-  { city: 'Bengaluru', area: 'Indiranagar', address: '1154, 12th Main Road, Indiranagar, Bengaluru 560038' },
-  { city: 'Hyderabad', area: 'Jubilee Hills', address: 'Golden Square, Road No. 45, Jubilee Hills, Hyderabad 500033' },
-  { city: 'Mohali', area: 'Sector 82, JLPL', address: 'SCO No. 66, Airport Road, Sector 82 JLPL, Mohali 140308' },
-  { city: 'Surat', area: 'Vesu', address: 'Solaris Cube, Vesu, Maharana Pratap Road, Surat 395007' },
-  { city: 'Coimbatore', area: 'R.S. Puram', address: '84, West Sambandham Road, R.S. Puram, Coimbatore 641002' },
-].map((s) => ({ ...s, map: mapUrl(s.address) }))
+  { city: 'New Delhi', area: 'Sultanpur', address: 'Plot 352, Sultanpur, Mehrauli-Gurgaon Road, New Delhi 110030' },
+  { city: 'New Delhi', area: 'Kirti Nagar', address: '12/1, WHS, Block A, Kirti Nagar Industrial Area, New Delhi 110015' },
+  { city: 'Mumbai', area: 'Lower Parel', address: 'One Lodha Place, 1615B, Senapati Bapat Marg, Mumbai, Maharashtra 400013' },
+  {
+    city: 'Bengaluru',
+    area: 'Indiranagar',
+    address: '1154, 12th A Main Rd, HAL 2nd Stage, Indiranagar, Bengaluru, Karnataka 560038',
+    map: 'https://maps.app.goo.gl/cVNzeP2gqPXBiL2L9',
+  },
+  { city: 'Hyderabad', area: 'Jubilee Hills', address: '1057-O, Golden Square, 118-2-293/82/A, Road No. 45, Jubilee Hills, Hyderabad, Telangana 500033' },
+  { city: 'Mohali', area: 'Sector 82, JLPL', address: 'SCO No. 66, Airport Road, Sector 82 JLPL, Mohali, Punjab 140308' },
+  {
+    city: 'Surat',
+    area: 'Vesu',
+    address: 'Solaris Cube, Vesu, Maharana Pratap Road, Surat, Gujarat 395007',
+    map: 'https://maps.app.goo.gl/TAEHxxyvWKYrpm8EA',
+  },
+].map((s) => ({ ...s, map: s.map ?? mapUrl(s.address) }))
 
 /**
  * One map pin per city. `city` must match the `city` field in `stores`.
@@ -60,7 +73,6 @@ export const mapPins = [
   { city: 'Mumbai', area: 'Lower Parel', lon: 72.83, lat: 19.0, side: 'left' },
   { city: 'Hyderabad', area: 'Jubilee Hills', lon: 78.41, lat: 17.43, side: 'right' },
   { city: 'Bengaluru', area: 'Indiranagar', lon: 77.64, lat: 12.98, side: 'right' },
-  { city: 'Coimbatore', area: 'R.S. Puram', lon: 76.95, lat: 11.01, side: 'right' },
 ]
 
 export const collections = [
@@ -163,7 +175,7 @@ export const faqs = [
   {
     q: 'Can I see the kitchens before I decide?',
     a: [
-      'Absolutely. You can see our display kitchens and samples at our experience centres in Delhi, Mumbai, Bangalore, Hyderabad, Surat, Mohali and Coimbatore, and we encourage every client to personally examine and test the material before ordering.',
+      'Absolutely. You can see our display kitchens and samples at our experience centres in Delhi, Mumbai, Bangalore, Hyderabad, Surat and Mohali, and we encourage every client to personally examine and test the material before ordering.',
       'Wherever we have an executed project in your city, a site visit can also be arranged, subject to the homeowner’s permission.',
     ],
   },

@@ -73,7 +73,7 @@ export default function Stores() {
       <div className="mx-auto flex max-w-[1320px] flex-wrap items-center gap-x-20 gap-y-5 px-4 py-12 sm:gap-y-16 sm:px-10 sm:py-28">
         <div className="flex w-full flex-col gap-2 md:hidden">
           <p className="m-0 text-[10px] font-medium tracking-[0.2em] text-cream/70 uppercase">Experience centres</p>
-          <p className="m-0 font-serif text-[26px] leading-[1.1] font-light">Eight studios. Seven cities.</p>
+          <p className="m-0 font-serif text-[26px] leading-[1.1] font-light">Seven studios. Six cities.</p>
           <p className="m-0 text-[13px] text-cream/65">Mon–Sat, 10 am – 7 pm, by appointment. Tap a studio to find it.</p>
         </div>
 
@@ -85,7 +85,7 @@ export default function Stores() {
           <div className="hidden flex-col gap-3.5 md:flex">
             <p className="m-0 text-xs font-medium tracking-label text-cream/70 uppercase">Experience centres</p>
             <h2 id="stores-title" className="m-0 font-serif text-4xl leading-[1.1] font-light">
-              Eight studios. Seven cities.
+              Seven studios. Six cities.
             </h2>
             <p className="m-0 text-[15px] text-cream/65">Monday to Saturday, 10 am – 7 pm, by appointment.</p>
           </div>

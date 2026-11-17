@@ -26,7 +26,7 @@ export default function Footer() {
       <div className="mx-auto max-w-[1320px] px-4 pt-12 pb-24 sm:px-10 sm:pt-28 md:pb-10">
         <div className="flex flex-wrap justify-between gap-x-6 gap-y-8 sm:gap-x-20 sm:gap-y-14">
           <div className="flex min-w-0 flex-[1_1_420px] flex-col gap-3.5 sm:gap-6">
-            <img src={logo} alt="Magppie" className="h-[22px] w-auto self-start sm:h-[30px]" />
+            <img src={logo} alt="Magppie" className="h-6 w-auto self-start sm:h-8" />
             <p className="mt-1 font-serif text-2xl leading-[1.1] sm:mt-2 sm:text-[40px] font-light">For People and Planet.</p>
             <p className="m-0 max-w-[420px] text-[13px] leading-relaxed text-cream/70 sm:text-[15px]">
               The world’s first Wellness Kitchen, Wellness Wardrobe and Wellness Vanity brand. Built entirely in

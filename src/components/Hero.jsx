@@ -16,7 +16,7 @@ export default function Hero({ onEnquiry }) {
 
       <div className="relative mx-auto flex max-w-[1320px] items-center justify-between gap-4 px-4 pt-4 sm:gap-6 sm:px-10 sm:pt-8">
         <a href="https://magppie.com/" aria-label="Magppie home" className="block leading-none">
-          <img src={logo} alt="Magppie" className="h-[18px] w-auto sm:h-[26px]" />
+          <img src={logo} alt="Magppie" className="h-[22px] w-auto sm:h-7 lg:h-[34px]" />
         </a>
         <a
           href="#enquire"
