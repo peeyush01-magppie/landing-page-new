@@ -10,7 +10,7 @@ import vanity from '../assets/images/vanity.webp'
 export const heroStats = [
   { value: '25 yrs', label: 'Unconditional guarantee' },
   { value: 'Zero', label: 'Formaldehyde' },
-  { value: '4.7 ★', label: '448+ Google reviews' },
+  { value: '4.8 ★', label: '500+ Google reviews' },
 ]
 
 export const awards = [

@@ -10,7 +10,7 @@ function StoreCard({ store, active, onSelect, cardRef }) {
     <div
       ref={cardRef}
       onMouseEnter={() => onSelect(store.city, { fromHover: true })}
-      className={`flex w-[230px] flex-none snap-start flex-col gap-1.5 border p-3.5 transition-colors duration-300 md:w-auto md:gap-2.5 md:border-0 md:border-t md:p-0 md:pt-[18px] ${
+      className={`flex w-[240px] flex-none snap-start flex-col gap-2.5 border p-5 transition-colors duration-300 md:w-auto md:gap-2.5 md:border-0 md:border-t md:p-0 md:pt-[18px] ${
         active ? 'border-gold bg-cream/[0.04] md:bg-transparent' : 'border-cream/15'
       }`}
     >
@@ -56,7 +56,7 @@ export default function Stores() {
     const card = cardRefs.current[city]
     const row = rowRef.current
     if (card && row && row.scrollWidth > row.clientWidth) {
-      row.scrollTo({ left: card.offsetLeft - row.offsetLeft - 16, behavior: 'smooth' })
+      row.scrollTo({ left: card.offsetLeft - row.offsetLeft - 20, behavior: 'smooth' })
     }
   }
 
@@ -67,21 +67,21 @@ export default function Stores() {
       className="overflow-hidden bg-ink text-cream"
     >
       {/* Hairline divider: Clients and Stores share one continuous dark band */}
-      <div aria-hidden="true" className="mx-auto max-w-[1320px] px-4 sm:px-10">
+      <div aria-hidden="true" className="mx-auto max-w-[1320px] px-5 sm:px-10">
         <div className="border-t border-cream/15" />
       </div>
-      <div className="mx-auto flex max-w-[1320px] flex-wrap items-center gap-x-20 gap-y-5 px-4 py-12 sm:gap-y-16 sm:px-10 sm:py-28">
-        <div className="flex w-full flex-col gap-2 md:hidden">
-          <p className="m-0 text-[10px] font-medium tracking-[0.2em] text-cream/70 uppercase">Experience centres</p>
-          <p className="m-0 font-serif text-[26px] leading-[1.1] font-light">Seven studios. Six cities.</p>
-          <p className="m-0 text-[13px] text-cream/65">Mon–Sat, 10 am – 7 pm, by appointment. Tap a studio to find it.</p>
+      <div className="mx-auto flex max-w-[1320px] flex-wrap items-center gap-x-20 gap-y-10 px-5 py-16 sm:gap-y-16 sm:px-10 sm:py-28">
+        <div className="flex w-full flex-col gap-3 md:hidden">
+          <p className="m-0 text-[11px] font-medium tracking-[0.2em] text-cream/70 uppercase">Experience centres</p>
+          <p className="m-0 font-serif text-[28px] leading-[1.12] font-light">Seven studios. Six cities.</p>
+          <p className="m-0 text-sm leading-relaxed text-cream/65">Mon–Sat, 10 am – 7 pm, by appointment. Tap a studio to find it.</p>
         </div>
 
-        <div ref={mapRef} className="mx-auto w-full max-w-[290px] min-w-0 scroll-mt-4 px-4 md:max-w-none md:flex-[1_1_440px] md:px-6">
+        <div ref={mapRef} className="mx-auto w-full max-w-[290px] min-w-0 scroll-mt-4 px-5 md:max-w-none md:flex-[1_1_440px] md:px-6">
           <IndiaMap pins={mapPins} activeCity={activeCity} onActivate={selectFromMap} />
         </div>
 
-        <div className="flex w-full min-w-0 flex-col gap-4 md:w-auto md:flex-[1_1_480px] md:gap-10">
+        <div className="flex w-full min-w-0 flex-col gap-6 md:w-auto md:flex-[1_1_480px] md:gap-10">
           <div className="hidden flex-col gap-3.5 md:flex">
             <p className="m-0 text-xs font-medium tracking-label text-cream/70 uppercase">Experience centres</p>
             <h2 id="stores-title" className="m-0 font-serif text-4xl leading-[1.1] font-light">
@@ -93,7 +93,7 @@ export default function Stores() {
           {/* Swipeable row on phones, two-column grid on desktop */}
           <div
             ref={rowRef}
-            className="relative -mx-4 flex snap-x snap-mandatory scroll-px-4 gap-2.5 overflow-x-auto px-4 [scrollbar-width:none] sm:-mx-10 sm:scroll-px-10 sm:px-10 md:mx-0 md:grid md:grid-cols-[repeat(auto-fill,minmax(220px,1fr))] md:gap-x-12 md:gap-y-9 md:overflow-visible md:px-0 [&::-webkit-scrollbar]:hidden"
+            className="relative -mx-5 flex snap-x snap-mandatory scroll-px-5 gap-3 overflow-x-auto px-5 [scrollbar-width:none] sm:-mx-10 sm:scroll-px-10 sm:px-10 md:mx-0 md:grid md:grid-cols-[repeat(auto-fill,minmax(220px,1fr))] md:gap-x-12 md:gap-y-9 md:overflow-visible md:px-0 [&::-webkit-scrollbar]:hidden"
           >
             {stores.map((s) => (
               <StoreCard

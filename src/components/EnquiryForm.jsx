@@ -94,25 +94,25 @@ export default function EnquiryForm({ onSubmit }) {
     <section
       id="enquire"
       aria-labelledby="form-title"
-      className="min-w-0 flex-[0_1_560px] scroll-mt-3 bg-cream px-5 pt-6 pb-6 shadow-[0_18px_50px_-20px_rgba(0,0,0,0.6)] text-ink sm:px-14 sm:pt-14 sm:pb-10"
+      className="min-w-0 flex-[0_1_560px] scroll-mt-3 bg-cream px-6 pt-8 pb-8 shadow-[0_18px_50px_-20px_rgba(0,0,0,0.6)] text-ink sm:px-14 sm:pt-14 sm:pb-10"
     >
       {firstName === null ? (
         <>
-          <Eyebrow className="mb-2 sm:mb-[18px]">Your next chapter starts here</Eyebrow>
-          <h2 id="form-title" className="m-0 font-serif text-[26px] leading-[1.1] sm:leading-[1.08] font-light tracking-[-0.01em] sm:text-[46px]">
+          <Eyebrow className="mb-3 sm:mb-[18px]">Your next chapter starts here</Eyebrow>
+          <h2 id="form-title" className="m-0 font-serif text-[28px] leading-[1.12] sm:leading-[1.08] font-light tracking-[-0.01em] sm:text-[46px]">
             Make room for something <span className="text-stone">beautiful.</span>
           </h2>
-          <p className="mt-1.5 mb-4 text-[13px] leading-normal sm:mt-[18px] sm:mb-8 sm:text-base text-stone">
+          <p className="mt-2.5 mb-7 text-sm leading-relaxed sm:mt-[18px] sm:mb-8 sm:text-base text-stone">
             Tell us a little about the space you have in mind.
           </p>
 
-          <form onSubmit={handleSubmit} noValidate className="flex flex-col gap-4 sm:gap-[26px]">
+          <form onSubmit={handleSubmit} noValidate className="flex flex-col gap-6 sm:gap-[26px]">
             <div className="flex flex-col">
               <Label htmlFor="f-name" required>Your name</Label>
               <input id="f-name" name="name" type="text" autoComplete="name" required placeholder="Full name" className="field" />
             </div>
 
-            <div className="flex flex-wrap gap-x-5 gap-y-4 sm:gap-x-8 sm:gap-y-[26px]">
+            <div className="flex flex-wrap gap-x-5 gap-y-6 sm:gap-x-8 sm:gap-y-[26px]">
               <div className="flex min-w-0 flex-[1_1_130px] flex-col sm:flex-[1_1_200px]">
                 <Label htmlFor="f-mobile" required>Mobile number</Label>
                 <input
@@ -138,7 +138,7 @@ export default function EnquiryForm({ onSubmit }) {
               <input id="f-email" name="email" type="email" autoComplete="email" required placeholder="you@example.com" className="field" />
             </div>
 
-            <div className="flex flex-wrap gap-x-5 gap-y-4 sm:gap-x-8 sm:gap-y-[26px]">
+            <div className="flex flex-wrap gap-x-5 gap-y-6 sm:gap-x-8 sm:gap-y-[26px]">
               <SelectField id="f-interest" name="interest" label="I’m interested in" required compact placeholder="Select">
                 {options(interests)}
               </SelectField>
@@ -177,7 +177,7 @@ export default function EnquiryForm({ onSubmit }) {
               <span>Let’s discuss your space</span>
               <ArrowUpRight />
             </button>
-            <p className="-mt-1.5 text-center text-[11px] text-stone sm:text-[13px]">
+            <p className="-mt-2 text-center text-xs text-stone sm:text-[13px]">
               We’ll use your details only to respond to your enquiry.
             </p>
           </form>
