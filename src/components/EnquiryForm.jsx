@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { budgets, interests, states, timelines, unionTerritories } from '../data/content'
 import { ArrowUpRight, ChevronDown, Eyebrow } from './ui'
 
@@ -17,14 +17,14 @@ function Label({ htmlFor, required, children }) {
   )
 }
 
-function SelectField({ id, name, label, required, placeholder, compact, children }) {
+function SelectField({ id, name, label, required, placeholder, compact, autoComplete = 'off', children }) {
   return (
     <div className={`flex min-w-0 flex-col ${compact ? 'flex-[1_1_130px]' : 'flex-[1_1_200px]'}`}>
       <Label htmlFor={id} required={required}>
         {label}
       </Label>
       <div className="relative">
-        <select id={id} name={name} required defaultValue="" className="field">
+        <select id={id} name={name} required autoComplete={autoComplete} defaultValue="" className="field">
           <option value="" disabled>
             {placeholder}
           </option>
@@ -42,8 +42,19 @@ const options = (list) => list.map((o) => <option key={o}>{o}</option>)
  * Validate the form values. Returns an error message, or '' when valid.
  * Mirrors the rules of the original page.
  */
+/**
+ * Browser autofill (autocomplete="tel") may insert an international number such as
+ * "+91 98765 43210" or "098765 43210". Reduce it to the 10-digit national number.
+ */
+function toMobile10(value) {
+  const digits = value.replace(/\D/g, '')
+  if (digits.length === 12 && digits.startsWith('91')) return digits.slice(2)
+  if (digits.length === 11 && digits.startsWith('0')) return digits.slice(1)
+  return digits
+}
+
 function validate(data) {
-  const mobile = data.mobile.replace(/\D/g, '')
+  const mobile = toMobile10(data.mobile)
   if (!data.name || !data.state || !data.email || !data.interest) return 'Please fill in all the required fields.'
   if (mobile.length !== 10) return 'Please enter a valid 10-digit mobile number.'
   if (!EMAIL_RE.test(data.email)) return 'Please enter a valid email address.'
@@ -63,6 +74,15 @@ export default function EnquiryForm({ onSubmit }) {
     }
     window.addEventListener('mg:interest', onInterest)
     return () => window.removeEventListener('mg:interest', onInterest)
+  }, [])
+
+  // Autofocus the name field on load so the browser's saved-details list is one step away.
+  // Desktop only: on phones it would pop the keyboard over the hero before the visitor has read anything.
+  const nameRef = useRef(null)
+  useEffect(() => {
+    if (window.matchMedia('(min-width: 768px) and (pointer: fine)').matches) {
+      nameRef.current?.focus({ preventScroll: true })
+    }
   }, [])
 
   const handleSubmit = async (e) => {
@@ -86,7 +106,7 @@ export default function EnquiryForm({ onSubmit }) {
     }
     setError('')
     // Hook for wiring up a CRM / API endpoint.
-    await onSubmit?.({ ...data, mobile: data.mobile.replace(/\D/g, '') })
+    await onSubmit?.({ ...data, mobile: toMobile10(data.mobile) })
     setFirstName(data.name.split(' ')[0])
   }
 
@@ -109,7 +129,7 @@ export default function EnquiryForm({ onSubmit }) {
           <form onSubmit={handleSubmit} noValidate className="flex flex-col gap-6 sm:gap-[26px]">
             <div className="flex flex-col">
               <Label htmlFor="f-name" required>Your name</Label>
-              <input id="f-name" name="name" type="text" autoComplete="name" required placeholder="Full name" className="field" />
+              <input ref={nameRef} id="f-name" name="name" type="text" autoComplete="name" required placeholder="Full name" className="field" />
             </div>
 
             <div className="flex flex-wrap gap-x-5 gap-y-6 sm:gap-x-8 sm:gap-y-[26px]">
@@ -119,15 +139,18 @@ export default function EnquiryForm({ onSubmit }) {
                   id="f-mobile"
                   name="mobile"
                   type="tel"
-                  inputMode="numeric"
-                  maxLength={10}
-                  autoComplete="tel-national"
+                  inputMode="tel"
+                  autoComplete="tel"
+                  onBlur={(e) => {
+                    const m = toMobile10(e.target.value)
+                    if (m.length === 10) e.target.value = m
+                  }}
                   required
                   placeholder="10-digit number"
                   className="field"
                 />
               </div>
-              <SelectField id="f-state" name="state" label="Your state" required compact placeholder="Select state">
+              <SelectField id="f-state" name="state" label="Your state" required compact placeholder="Select state" autoComplete="address-level1">
                 <optgroup label="States">{options(states)}</optgroup>
                 <optgroup label="Union Territories">{options(unionTerritories)}</optgroup>
               </SelectField>
